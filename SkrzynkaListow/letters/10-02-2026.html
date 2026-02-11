@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List miłosny: List pełen miłości | 10-02-2026</title>
+    <link rel="stylesheet" href="../assets/css/letter-styles.css">
+    <style>
+        /* Style specyficzne dla tego listu */
+        .letter-container {
+            font-family: 'Georgia', serif;
+            background: url('../assets/images/paper-texture.jpg');
+            min-height: 100vh;
+            padding: 20px;
+            position: relative;
+        }
+        
+        .letter-paper {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(253, 245, 230, 0.95);
+            padding: 50px;
+            border-radius: 5px;
+            box-shadow: 0 0 30px rgba(0,0,0,0.15);
+            position: relative;
+            border: 1px solid #d4b483;
+        }
+        
+        /* Efekt zagiętego rogu */
+        .letter-paper::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, transparent 50%, rgba(0,0,0,0.05) 50%);
+            border-radius: 0 0 0 100px;
+        }
+        
+        .letter-header {
+            text-align: center;
+            margin-bottom: 50px;
+            border-bottom: 2px solid #e63946;
+            padding-bottom: 25px;
+        }
+        
+        .letter-date {
+            font-size: 1.3rem;
+            color: #e63946;
+            display: block;
+            margin-bottom: 10px;
+            font-style: italic;
+        }
+        
+        .letter-title {
+            font-size: 2.2rem;
+            color: #8b4513;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+        
+        .letter-content {
+            font-size: 1.3rem;
+            line-height: 1.9;
+            color: #5d4037;
+            margin-bottom: 50px;
+            text-align: justify;
+        }
+        
+        .letter-content p {
+            margin-bottom: 25px;
+            text-indent: 40px;
+        }
+        
+        .letter-signature {
+            text-align: right;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px dashed #8b4513;
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.8rem;
+            color: #1d3557;
+        }
+        
+        .letter-footer {
+            text-align: center;
+            margin-top: 80px;
+            padding-top: 40px;
+            border-top: 2px dashed #e63946;
+        }
+        
+        .love-reveal-btn {
+            background: linear-gradient(135deg, #e63946, #ff6b6b);
+            color: white;
+            border: none;
+            padding: 22px 45px;
+            font-size: 1.6rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+            box-shadow: 0 5px 20px rgba(230, 57, 70, 0.4);
+            font-family: 'Georgia', serif;
+        }
+        
+        .love-reveal-btn:hover {
+            transform: scale(1.05) translateY(-3px);
+            box-shadow: 0 8px 25px rgba(230, 57, 70, 0.6);
+        }
+        
+        .love-message {
+            margin-top: 40px;
+            padding: 40px;
+            background: linear-gradient(135deg, #ffafbd, #ffc3a0);
+            border-radius: 25px;
+            animation: fadeIn 1s ease;
+            display: none;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .hearts-animation {
+            font-size: 2.5rem;
+            animation: pulse 1.5s infinite;
+            margin: 30px 0;
+            letter-spacing: 10px;
+        }
+        
+        .back-button {
+            position: fixed;
+            top: 25px;
+            left: 25px;
+            background: #457b9d;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            z-index: 100;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+            font-size: 1.1rem;
+        }
+        
+        .back-button:hover {
+            background: #1d3557;
+            transform: translateX(-5px);
+        }
+        
+        /* Efekt pieczątki miłości */
+        .love-stamp {
+            position: absolute;
+            bottom: 30px;
+            right: 30px;
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle, rgba(230,57,70,0.1) 0%, transparent 70%);
+            border: 3px dashed #e63946;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transform: rotate(15deg);
+            opacity: 0.7;
+        }
+        
+        .love-stamp::after {
+            content: 'Z Miłością ❤️';
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.5rem;
+            color: #e63946;
+            transform: rotate(-15deg);
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+        
+        @keyframes floatHeart {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        /* Responsywność */
+        @media (max-width: 768px) {
+            .letter-paper {
+                padding: 25px;
+                margin: 15px;
+            }
+            
+            .letter-title {
+                font-size: 1.8rem;
+            }
+            
+            .letter-content {
+                font-size: 1.2rem;
+                line-height: 1.7;
+            }
+            
+            .love-reveal-btn {
+                padding: 18px 35px;
+                font-size: 1.4rem;
+            }
+            
+            .love-stamp {
+                width: 100px;
+                height: 100px;
+                bottom: 15px;
+                right: 15px;
+            }
+            
+            .love-stamp::after {
+                font-size: 1.2rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .letter-content {
+                font-size: 1.1rem;
+                text-indent: 30px;
+            }
+            
+            .letter-signature {
+                font-size: 1.5rem;
+            }
+            
+            .back-button {
+                padding: 10px 20px;
+                font-size: 1rem;
+                top: 15px;
+                left: 15px;
+            }
+        }
+    </style>
+    <!-- Dodajemy czcionkę odręczną dla podpisu -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <button class="back-button" onclick="window.history.back()">← Wróć do kalendarza</button>
+    
+    <div class="letter-container">
+        <div class="letter-paper">
+            <!-- Pieczątka miłości -->
+            <div class="love-stamp"></div>
+            
+            <div class="letter-header">
+                <span class="letter-date">10 Luty 2026</span>
+                <span class="letter-title">List pełen miłości</span>
+            </div>
+            
+            <div class="letter-content">
+                <!-- ===== TREŚĆ TWOJEGO LISTU ===== -->
+                <p>Moja Najdroższa Martusiu,</p>
+                
+                <p>Piszę do Ciebie te słowa, bo czasem zwykłe "kocham Cię" wydaje się za małe, by pomieścić wszystko, co czuję. Gdy zamykam oczy, widzę Twój uśmiech – ten jedyny, który rozjaśnia nawet najbardziej szary dzień i sprawia, że świat staje się lżejszy.</p>
+                
+                <p>Martusiu, jesteś dla mnie nie tylko miłością, ale i najlepszą przyjaciółką, domem w ludzkiej postaci. W Twoim spojrzeniu znajduję spokój, a w Twoim śmiechu – najpiękniejszą melodię. Pamiętam nasze drobne chwile: te poranne rozmowy przy kawie, wieczory, kiedy nic nie robiliśmy, a czułem, że to wszystko, czego potrzebuję, i Twoją dłoń, która zawsze idealnie pasuje do mojej.</p>
+                
+                <p>Dziękuję Ci za bycie taką, jaka jesteś – za Twoją siłę, delikatność, za to, jak widzisz piękno w małych rzeczach. Dziękuję, że jesteś obok mnie i że mogę z Tobą dzielić życie, marzenia i nawet te zupełnie zwyczajne, codzienne sprawy.</p>
+                
+                <p>Obiecuję Ci, że każdego dnia będę starał się zasługiwać na Twoją miłość. Chcę być Twoim wsparciem, Twoją bezpieczną przystanią i osobą, która zawsze rozśmieszy Cię, gdy tego potrzebujesz.</p>
+                
+                <p>Kocham Cię nie tylko za to, kim jesteś, ale także za to, kim staję się przy Tobie – lepszą wersją siebie.</p>
+                
+                <div class="letter-signature">
+                    Na zawsze Twój,<br>
+                    Szymon
+                </div>
+            </div>
+            
+            <div class="letter-footer">
+                <button class="love-reveal-btn" onclick="revealLoveMessage()">
+                    💖 Kliknij tutaj, bo Cię kocham! 💖
+                </button>
+                
+                <div class="love-message" id="loveMessage">
+                    <h2 style="color: #e63946; margin-bottom: 20px; font-size: 2.5rem;">Kocham Cię! ❤️</h2>
+                    <div class="hearts-animation">
+                        ❤️💖💕💗💓💘
+                    </div>
+                    <p style="font-size: 1.3rem; margin: 15px 0;">Za każdym razem, gdy czytasz ten list...</p>
+                    <p style="font-style: italic; color: #5d4037; font-size: 1.2rem;">Kocham Cię jeszcze bardziej niż przed chwilą.</p>
+                    <p style="margin-top: 25px; font-size: 1.1rem; color: #666;">Zawsze i na zawsze, Twoje serce.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function revealLoveMessage() {
+            const message = document.getElementById('loveMessage');
+            message.style.display = 'block';
+            
+            // Dodaj efekt wibracji przycisku
+            const button = document.querySelector('.love-reveal-btn');
+            button.style.animation = 'shake 0.5s ease';
+            setTimeout(() => button.style.animation = '', 500);
+            
+            // Dodaj latające serduszka
+            for (let i = 0; i < 25; i++) {
+                createFloatingHeart();
+            }
+            
+            // Odtwórz dźwięk bicia serca
+            try {
+                const audio = new Audio('../assets/sounds/heartbeat.mp3');
+                audio.volume = 0.3;
+                audio.play().catch(() => {});
+            } catch (e) {
+                // Ignoruj błędy z dźwiękiem
+            }
+            
+            // Oznacz jako przeczytany w głównej aplikacji
+            try {
+                if (window.opener) {
+                    window.opener.postMessage({ 
+                        type: 'letterRead', 
+                        date: '10-02-2026' 
+                    }, '*');
+                }
+                
+                // Również zapisz w localStorage tego listu
+                localStorage.setItem('letter_10_02_2026_read', 'true');
+            } catch (e) {
+                console.log("Komunikacja z oknem głównym niedostępna");
+            }
+        }
+        
+        function createFloatingHeart() {
+            const heart = document.createElement('div');
+            const hearts = ['❤️', '💖', '💕', '💗', '💓', '💘', '💝'];
+            const randomHeart = hearts[Math.floor(Math.random() * hearts.length)];
+            
+            heart.innerHTML = randomHeart;
+            heart.style.position = 'fixed';
+            heart.style.fontSize = Math.random() * 25 + 20 + 'px';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.top = '100vh';
+            heart.style.opacity = '0.8';
+            heart.style.zIndex = '9999';
+            heart.style.pointerEvents = 'none';
+            heart.style.animation = `floatHeart ${Math.random() * 4 + 3}s linear forwards`;
+            
+            // Losowy kolor serduszka
+            const colors = ['#e63946', '#ff6b6b', '#ffafbd', '#e84393', '#fd79a8'];
+            heart.style.color = colors[Math.floor(Math.random() * colors.length)];
+            
+            // Losowy obrót
+            heart.style.transform = `rotate(${Math.random() * 360}deg)`;
+            
+            document.body.appendChild(heart);
+            
+            // Usuń serduszko po animacji
+            setTimeout(() => {
+                if (heart.parentNode) {
+                    heart.parentNode.removeChild(heart);
+                }
+            }, 7000);
+        }
+        
+        // Dodaj styl dla animacji wstrząsu
+        const shakeStyle = document.createElement('style');
+        shakeStyle.textContent = `
+            @keyframes shake {
+                0%, 100% { transform: translateX(0) scale(1.05) translateY(-3px); }
+                25% { transform: translateX(-5px) scale(1.05) translateY(-3px); }
+                75% { transform: translateX(5px) scale(1.05) translateY(-3px); }
+            }
+        `;
+        document.head.appendChild(shakeStyle);
+        
+        // Automatycznie oznacz jako przeczytany po 45 sekundach
+        setTimeout(() => {
+            try {
+                if (window.opener) {
+                    window.opener.postMessage({ 
+                        type: 'letterRead', 
+                        date: '10-02-2026' 
+                    }, '*');
+                }
+            } catch (e) {
+                // Ignoruj błędy
+            }
+        }, 45000);
+        
+        // Sprawdź czy list był już czytany
+        window.addEventListener('load', () => {
+            const wasRead = localStorage.getItem('letter_10_02_2026_read');
+            if (wasRead === 'true') {
+                // Możesz dodać jakiś wizualny indicator
+                console.log('Ten list został już wcześniej przeczytany');
+            }
+        });
+    </script>
+</body>
+</html>

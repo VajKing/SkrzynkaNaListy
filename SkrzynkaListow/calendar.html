@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalendarz Listów Miłosnych | Skrzynka dla Martusi</title>
+    <link rel="stylesheet" href="assets/css/main-styles.css">
+    <link rel="stylesheet" href="assets/css/calendar-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Caveat:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Tło -->
+    <div class="fog-background"></div>
+    
+    <!-- Główny kontener -->
+    <div class="container">
+        <!-- Nagłówek kalendarza -->
+        <header class="calendar-header">
+            <div class="header-content">
+                <h1 class="title">
+                    <i class="fas fa-calendar-alt"></i>
+                    Kalendarz Listów Miłosnych
+                    <i class="fas fa-heart"></i>
+                </h1>
+                <p class="subtitle">Listy pełne miłości na każdy tydzień dla Martusi</p>
+                
+                <div class="current-month">
+                    <h2 id="current-month-year">Luty 2026</h2>
+                    <div class="month-nav">
+                        <button class="nav-btn" id="prev-month"><i class="fas fa-chevron-left"></i> Poprzedni</button>
+                        <button class="nav-btn today-btn" id="today-btn">Dzisiaj</button>
+                        <button class="nav-btn" id="next-month">Następny <i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
+                
+                <a href="index.html" class="back-to-mailbox-btn">
+                    <i class="fas fa-mail-bulk"></i> Wróć do Skrzynki
+                </a>
+            </div>
+        </header>
+        
+        <!-- Główna zawartość kalendarza -->
+        <main class="calendar-main">
+            <!-- Kontrolki filtrowania -->
+            <div class="calendar-controls">
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">Wszystkie listy</button>
+                    <button class="filter-btn" data-filter="read">Przeczytane</button>
+                    <button class="filter-btn" data-filter="unread">Nieprzeczytane</button>
+                    <button class="filter-btn" data-filter="upcoming">Nadchodzące</button>
+                </div>
+                
+                <div class="search-box">
+                    <input type="text" id="search-letters" placeholder="Szukaj listu...">
+                    <i class="fas fa-search"></i>
+                </div>
+            </div>
+            
+            <!-- Kalendarz z listami -->
+            <div class="calendar-grid" id="calendar-grid">
+                <!-- Listy będą generowane dynamicznie przez JavaScript -->
+            </div>
+            
+            <!-- Informacja o następnym liście -->
+            <div class="next-letter-info">
+                <h3><i class="fas fa-envelope-open-text"></i> Następny list czeka na Ciebie:</h3>
+                <div class="next-letter-card">
+                    <div class="next-letter-date" id="next-letter-date">14.02.2026</div>
+                    <div class="countdown-timer" id="countdown-timer">
+                        <div class="countdown-unit">
+                            <span class="number" id="days">03</span>
+                            <span class="label">dni</span>
+                        </div>
+                        <div class="countdown-unit">
+                            <span class="number" id="hours">12</span>
+                            <span class="label">godziny</span>
+                        </div>
+                        <div class="countdown-unit">
+                            <span class="number" id="minutes">45</span>
+                            <span class="label">minuty</span>
+                        </div>
+                        <div class="countdown-unit">
+                            <span class="number" id="seconds">22</span>
+                            <span class="label">sekundy</span>
+                        </div>
+                    </div>
+                    <button class="preview-btn" id="preview-next-btn">
+                        <i class="fas fa-eye"></i> Podgląd
+                    </button>
+                </div>
+            </div>
+        </main>
+        
+        <!-- Panel dodawania nowego listu (dla Ciebie, Szymonie) -->
+        <div class="add-letter-panel">
+            <h3><i class="fas fa-plus-circle"></i> Dodaj nowy list</h3>
+            <div class="add-form">
+                <div class="form-group">
+                    <label for="letter-date"><i class="fas fa-calendar-day"></i> Data listu:</label>
+                    <input type="date" id="letter-date" min="2026-02-10">
+                </div>
+                <div class="form-group">
+                    <label for="letter-title"><i class="fas fa-heading"></i> Tytuł listu:</label>
+                    <input type="text" id="letter-title" placeholder="Np. List pełen miłości">
+                </div>
+                <div class="form-group">
+                    <label for="letter-content"><i class="fas fa-pen-fancy"></i> Treść listu (HTML):</label>
+                    <textarea id="letter-content" rows="6" placeholder="Wklej tutaj kod HTML listu..."></textarea>
+                </div>
+                <div class="form-buttons">
+                    <button class="save-btn" id="save-letter-btn">
+                        <i class="fas fa-save"></i> Zapisz list
+                    </button>
+                    <button class="template-btn" id="load-template-btn">
+                        <i class="fas fa-file-code"></i> Wczytaj szablon
+                    </button>
+                    <button class="preview-btn" id="preview-letter-btn">
+                        <i class="fas fa-eye"></i> Podgląd
+                    </button>
+                </div>
+            </div>
+            <div class="template-info">
+                <p><strong>Szablon listu:</strong> Użyj struktury HTML z pliku <code>image.png</code> jako podstawy dla każdego nowego listu.</p>
+            </div>
+        </div>
+        
+        <!-- Stopka -->
+        <footer class="calendar-footer">
+            <p>Kalendarz listów miłosnych dla Martusi | Stworzone z <i class="fas fa-heart"></i> przez Szymona</p>
+            <p class="stats" id="letter-stats">Ładuję statystyki...</p>
+        </footer>
+    </div>
+    
+    <!-- Modal do podglądu listu -->
+    <div class="letter-modal" id="letter-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-title">Podgląd listu</h3>
+                <button class="close-modal" id="close-modal">&times;</button>
+            </div>
+            <div class="modal-body" id="modal-body">
+                <!-- Tutaj będzie wyświetlany podgląd listu -->
+            </div>
+            <div class="modal-footer">
+                <button class="open-letter-btn" id="open-letter-btn">
+                    <i class="fas fa-envelope-open"></i> Otwórz ten list
+                </button>
+                <button class="close-btn" id="close-preview-btn">Zamknij</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Skrypty -->
+    <script src="assets/js/script.js"></script>
+    <script>
+        // Dane listów - w rzeczywistości można to przechowywać w localStorage lub bazie danych
+        const lettersData = [
+            {
+                id: 1,
+                date: "2026-02-10",
+                title: "List pełen miłości",
+                fileName: "10-02-2026.html",
+                read: true,
+                description: "Pierwszy list miłosny pełen uczuć i wspomnień."
+            },
+            {
+                id: 2,
+                date: "2026-02-14",
+                title: "Walentynkowy list miłości",
+                fileName: "14-02-2026.html",
+                read: false,
+                description: "Specjalny list na Walentynki - dzień zakochanych."
+            },
+            {
+                id: 3,
+                date: "2026-02-21",
+                title: "List na kolejny tydzień",
+                fileName: "21-02-2026.html",
+                read: false,
+                description: "Kontynuacja naszej miłosnej przygody."
+            },
+            {
+                id: 4,
+                date: "2026-02-28",
+                title: "List na koniec lutego",
+                fileName: "28-02-2026.html",
+                read: false,
+                description: "Podsumowanie miesiąca i nowe obietnice."
+            },
+            {
+                id: 5,
+                date: "2026-03-07",
+                title: "Marcowy list miłości",
+                fileName: "07-03-2026.html",
+                read: false,
+                description: "Witamy wiosnę z nowymi marzeniami."
+            },
+            {
+                id: 6,
+                date: "2026-03-14",
+                title: "List pełen nadziei",
+                fileName: "14-03-2026.html",
+                read: false,
+                description: "Kolejny tydzień, kolejna porcja miłości."
+            },
+            {
+                id: 7,
+                date: "2026-03-21",
+                title: "Wiosenny list miłosny",
+                fileName: "21-03-2026.html",
+                read: false,
+                description: "Pierwszy dzień wiosny w naszych sercach."
+            },
+            {
+                id: 8,
+                date: "2026-03-28",
+                title: "List pełen wspomnień",
+                fileName: "28-03-2026.html",
+                read: false,
+                description: "Wspominamy piękne chwile razem."
+            }
+        ];
+        
+        // Rozszerzanie danych o listy na cały rok (co tydzień)
+        function generateYearLetters() {
+            const startDate = new Date('2026-02-14');
+            const endDate = new Date('2026-12-31');
+            let currentId = 9;
+            
+            for (let date = new Date(startDate); date <= endDate; date.setDate(date.getDate() + 7)) {
+                // Pomijamy daty które już mamy
+                const dateStr = date.toISOString().split('T')[0];
+                const existing = lettersData.find(letter => letter.date === dateStr);
+                
+                if (!existing && dateStr !== '2026-02-10') {
+                    const monthNames = ['Stycznia', 'Lutego', 'Marca', 'Kwietnia', 'Maja', 'Czerwca', 'Lipca', 'Sierpnia', 'Września', 'Października', 'Listopada', 'Grudnia'];
+                    const day = date.getDate();
+                    const month = monthNames[date.getMonth()];
+                    const year = date.getFullYear();
+                    
+                    lettersData.push({
+                        id: currentId++,
+                        date: dateStr,
+                        title: `List na ${day} ${month} ${year}`,
+                        fileName: `${dateStr.split('-').reverse().join('-')}.html`,
+                        read: false,
+                        description: `Kolejny list miłosny na ${day} ${month} ${year} roku.`
+                    });
+                }
+            }
+            
+            // Sortowanie po dacie
+            lettersData.sort((a, b) => new Date(a.date) - new Date(b.date));
+        }
+        
+        // Generuj listy na cały rok
+        generateYearLetters();
+        
+        // Inicjalizacja po załadowaniu strony
+        document.addEventListener('DOMContentLoaded', function() {
+            // Wyświetl kalendarz
+            renderCalendar();
+            
+            // Ustaw datę następnego listu i odliczanie
+            updateNextLetterCountdown();
+            
+            // Obsługa przycisków
+            setupEventListeners();
+            
+            // Ustaw statystyki
+            updateStats();
+            
+            // Dodaj latające serduszka
+            createFloatingHearts();
+        });
+        
+        function renderCalendar() {
+            const calendarGrid = document.getElementById('calendar-grid');
+            calendarGrid.innerHTML = '';
+            
+            // Sortuj listy po dacie
+            const sortedLetters = [...lettersData].sort((a, b) => new Date(a.date) - new Date(b.date));
+            
+            // Grupuj listy według miesiąca
+            const lettersByMonth = {};
+            sortedLetters.forEach(letter => {
+                const date = new Date(letter.date);
+                const monthYear = `${date.getFullYear()}-${date.getMonth()}`;
+                
+                if (!lettersByMonth[monthYear]) {
+                    lettersByMonth[monthYear] = [];
+                }
+                
+                lettersByMonth[monthYear].push(letter);
+            });
+            
+            // Dla każdego miesiąca utwórz sekcję
+            Object.keys(lettersByMonth).forEach(monthKey => {
+                const monthLetters = lettersByMonth[monthKey];
+                const firstLetter = monthLetters[0];
+                const date = new Date(firstLetter.date);
+                
+                // Nagłówek miesiąca
+                const monthNames = ['Styczeń', 'Luty', 'Marzec', 'Kwiecień', 'Maj', 'Czerwiec', 'Lipiec', 'Sierpień', 'Wrzesień', 'Październik', 'Listopad', 'Grudzień'];
+                const monthName = monthNames[date.getMonth()];
+                const year = date.getFullYear();
+                
+                const monthSection = document.createElement('div');
+                monthSection.className = 'month-section';
+                monthSection.innerHTML = `
+                    <h3 class="month-title">${monthName} ${year}</h3>
+                    <div class="month-letters">
+                        ${monthLetters.map(letter => createLetterCard(letter)).join('')}
+                    </div>
+                `;
+                
+                calendarGrid.appendChild(monthSection);
+            });
+        }
+        
+        function createLetterCard(letter) {
+            const date = new Date(letter.date);
+            const now = new Date();
+            const isFuture = date > now;
+            const isToday = date.toDateString() === now.toDateString();
+            
+            const day = date.getDate();
+            const monthNames = ['Sty', 'Lut', 'Mar', 'Kwi', 'Maj', 'Cze', 'Lip', 'Sie', 'Wrz', 'Paź', 'Lis', 'Gru'];
+            const month = monthNames[date.getMonth()];
+            
+            const statusClass = letter.read ? 'read' : 'unread';
+            const futureClass = isFuture ? 'future' : '';
+            const todayClass = isToday ? 'today' : '';
+            
+            return `
+                <div class="letter-card ${statusClass} ${futureClass} ${todayClass}" data-id="${letter.id}" data-date="${letter.date}">
+                    <div class="letter-date-badge">
+                        <span class="day">${day}</span>
+                        <span class="month">${month}</span>
+                    </div>
+                    <div class="letter-content">
+                        <h4 class="letter-title">${letter.title}</h4>
+                        <p class="letter-description">${letter.description}</p>
+                        <div class="letter-status">
+                            <span class="status ${letter.read ? 'read' : 'unread'}">
+                                <i class="fas fa-${letter.read ? 'check-circle' : 'envelope'}"></i>
+                                ${letter.read ? 'Przeczytany' : 'Nieprzeczytany'}
+                            </span>
+                            ${isFuture ? `<span class="countdown-small" data-date="${letter.date}"></span>` : ''}
+                        </div>
+                    </div>
+                    <div class="letter-actions">
+                        ${!isFuture ? 
+                            `<button class="open-letter-btn" data-file="${letter.fileName}">
+                                <i class="fas fa-envelope-open"></i> Otwórz
+                            </button>` : 
+                            `<button class="preview-letter-btn" data-date="${letter.date}">
+                                <i class="fas fa-eye"></i> Podgląd
+                            </button>`
+                        }
+                        <button class="info-letter-btn" data-id="${letter.id}">
+                            <i class="fas fa-info-circle"></i>
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+        
+        function updateNextLetterCountdown() {
+            const now = new Date();
+            const futureLetters = lettersData.filter(letter => new Date(letter.date) > now && !letter.read);
+            
+            if (futureLetters.length > 0) {
+                const nextLetter = futureLetters[0];
+                const nextDate = new Date(nextLetter.date);
+                
+                document.getElementById('next-letter-date').textContent = formatDate(nextDate);
+                
+                // Ustaw odliczanie
+                updateCountdown(nextDate);
+                
+                // Aktualizuj co sekundę
+                setInterval(() => updateCountdown(nextDate), 1000);
+            } else {
+                document.querySelector('.next-letter-info').innerHTML = `
+                    <h3><i class="fas fa-trophy"></i> Gratulacje!</h3>
+                    <p>Przeczytałaś już wszystkie listy w tym roku! Nowe listy pojawią się wkrótce.</p>
+                `;
+            }
+        }
+        
+        function updateCountdown(targetDate) {
+            const now = new Date();
+            const diff = targetDate - now;
+            
+            if (diff <= 0) {
+                document.getElementById('countdown-timer').innerHTML = `
+                    <div class="countdown-finished">
+                        <i class="fas fa-gift"></i> List jest już dostępny!
+                    </div>
+                `;
+                return;
+            }
+            
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            
+            document.getElementById('days').textContent = days.toString().padStart(2, '0');
+            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+            
+            // Aktualizuj również małe odliczanie na kartach listów
+            document.querySelectorAll('.countdown-small').forEach(el => {
+                const letterDate = new Date(el.dataset.date);
+                const letterDiff = letterDate - now;
+                
+                if (letterDiff > 0) {
+                    const letterDays = Math.floor(letterDiff / (1000 * 60 * 60 * 24));
+                    el.textContent = `za ${letterDays} dni`;
+                } else {
+                    el.textContent = 'Dostępny';
+                }
+            });
+        }
+        
+        function formatDate(date) {
+            const day = date.getDate();
+            const monthNames = ['stycznia', 'lutego', 'marca', 'kwietnia', 'maja', 'czerwca', 'lipca', 'sierpnia', 'września', 'października', 'listopada', 'grudnia'];
+            const month = monthNames[date.getMonth()];
+            const year = date.getFullYear();
+            return `${day} ${month} ${year}`;
+        }
+        
+        function setupEventListeners() {
+            // Filtrowanie listów
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    const filter = this.dataset.filter;
+                    filterLetters(filter);
+                });
+            });
+            
+            // Otwieranie listu
+            document.addEventListener('click', function(e) {
+                if (e.target.closest('.open-letter-btn')) {
+                    const fileName = e.target.closest('.open-letter-btn').dataset.file;
+                    openLetter(fileName);
+                }
+                
+                if (e.target.closest('.preview-letter-btn')) {
+                    const date = e.target.closest('.preview-letter-btn').dataset.date;
+                    previewLetter(date);
+                }
+                
+                if (e.target.closest('.info-letter-btn')) {
+                    const id = e.target.closest('.info-letter-btn').dataset.id;
+                    showLetterInfo(id);
+                }
+            });
+            
+            // Przycisk podglądu następnego listu
+            document.getElementById('preview-next-btn').addEventListener('click', function() {
+                const now = new Date();
+                const futureLetters = lettersData.filter(letter => new Date(letter.date) > now && !letter.read);
+                
+                if (futureLetters.length > 0) {
+                    previewLetter(futureLetters[0].date);
+                }
+            });
+            
+            // Przyciski nawigacji miesiącami
+            document.getElementById('today-btn').addEventListener('click', function() {
+                // Przewiń do dzisiejszego miesiąca
+                const today = new Date();
+                const todayMonth = `${today.getFullYear()}-${today.getMonth()}`;
+                const monthElement = document.querySelector(`[data-month="${todayMonth}"]`);
+                
+                if (monthElement) {
+                    monthElement.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+            
+            // Dodawanie nowego listu
+            document.getElementById('save-letter-btn').addEventListener('click', saveNewLetter);
+            document.getElementById('load-template-btn').addEventListener('click', loadTemplate);
+            document.getElementById('preview-letter-btn').addEventListener('click', previewNewLetter);
+            
+            // Modal
+            document.getElementById('close-modal').addEventListener('click', closeModal);
+            document.getElementById('close-preview-btn').addEventListener('click', closeModal);
+            document.getElementById('open-letter-btn').addEventListener('click', function() {
+                const fileName = this.dataset.file;
+                if (fileName) {
+                    openLetter(fileName);
+                }
+            });
+            
+            // Kliknięcie poza modalem zamyka go
+            window.addEventListener('click', function(e) {
+                const modal = document.getElementById('letter-modal');
+                if (e.target === modal) {
+                    closeModal();
+                }
+            });
+            
+            // Wyszukiwanie
+            document.getElementById('search-letters').addEventListener('input', function(e) {
+                searchLetters(e.target.value);
+            });
+        }
+        
+        function filterLetters(filter) {
+            const letters = document.querySelectorAll('.letter-card');
+            
+            letters.forEach(letter => {
+                const isRead = letter.classList.contains('read');
+                const isFuture = letter.classList.contains('future');
+                
+                switch(filter) {
+                    case 'all':
+                        letter.style.display = 'flex';
+                        break;
+                    case 'read':
+                        letter.style.display = isRead ? 'flex' : 'none';
+                        break;
+                    case 'unread':
+                        letter.style.display = !isRead ? 'flex' : 'none';
+                        break;
+                    case 'upcoming':
+                        letter.style.display = isFuture ? 'flex' : 'none';
+                        break;
+                }
+            });
+        }
+        
+        function searchLetters(query) {
+            const letters = document.querySelectorAll('.letter-card');
+            const lowercaseQuery = query.toLowerCase();
+            
+            letters.forEach(letter => {
+                const title = letter.querySelector('.letter-title').textContent.toLowerCase();
+                const description = letter.querySelector('.letter-description').textContent.toLowerCase();
+                
+                if (title.includes(lowercaseQuery) || description.includes(lowercaseQuery)) {
+                    letter.style.display = 'flex';
+                } else {
+                    letter.style.display = 'none';
+                }
+            });
+        }
+        
+        function openLetter(fileName) {
+            // Animacja otwarcia listu (rolka papieru)
+            document.body.style.overflow = 'hidden';
+            
+            const overlay = document.createElement('div');
+            overlay.className = 'letter-opening-overlay';
+            overlay.innerHTML = `
+                <div class="letter-scroll-animation">
+                    <div class="paper-roll">
+                        <div class="paper-unrolling"></div>
+                    </div>
+                    <p class="opening-text">Otwieranie listu...</p>
+                </div>
+            `;
+            
+            document.body.appendChild(overlay);
+            
+            // Odtwórz dźwięk
+            try {
+                const audio = new Audio('https://assets.mixkit.co/sfx/preview/mixkit-page-turn-swipe-1491.mp3');
+                audio.volume = 0.5;
+                audio.play();
+            } catch(e) {}
+            
+            // Przejdź do listu po 2 sekundach
+            setTimeout(() => {
+                window.location.href = `letters/${fileName}`;
+            }, 2000);
+        }
+        
+        function previewLetter(date) {
+            const letter = lettersData.find(l => l.date === date);
+            if (!letter) return;
+            
+            document.getElementById('modal-title').textContent = `Podgląd: ${letter.title}`;
+            document.getElementById('modal-body').innerHTML = `
+                <div class="letter-preview">
+                    <div class="preview-header">
+                        <h4>${letter.title}</h4>
+                        <p class="preview-date">Data: ${formatDate(new Date(letter.date))}</p>
+                    </div>
+                    <div class="preview-content">
+                        <p><strong>Opis:</strong> ${letter.description}</p>
+                        <p><strong>Status:</strong> ${letter.read ? 'Przeczytany' : 'Nieprzeczytany'}</p>
+                        <p><strong>Plik:</strong> ${letter.fileName}</p>
+                    </div>
+                    <div class="preview-note">
+                        <i class="fas fa-info-circle"></i>
+                        <p>Ten list będzie dostępny do przeczytania w dniu ${formatDate(new Date(letter.date))}.</p>
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('open-letter-btn').dataset.file = letter.fileName;
+            document.getElementById('letter-modal').style.display = 'block';
+        }
+        
+        function showLetterInfo(id) {
+            const letter = lettersData.find(l => l.id == id);
+            if (!letter) return;
+            
+            document.getElementById('modal-title').textContent = `Informacje o liście`;
+            document.getElementById('modal-body').innerHTML = `
+                <div class="letter-info">
+                    <h4>${letter.title}</h4>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <span class="info-label">Data:</span>
+                            <span class="info-value">${formatDate(new Date(letter.date))}</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Status:</span>
+                            <span class="info-value ${letter.read ? 'read' : 'unread'}">
+                                <i class="fas fa-${letter.read ? 'check-circle' : 'envelope'}"></i>
+                                ${letter.read ? 'Przeczytany' : 'Nieprzeczytany'}
+                            </span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Plik:</span>
+                            <span class="info-value">${letter.fileName}</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Opis:</span>
+                            <span class="info-value">${letter.description}</span>
+                        </div>
+                    </div>
+                    <div class="info-actions">
+                        ${!letter.read && new Date(letter.date) <= new Date() ? 
+                            `<button class="mark-read-btn" data-id="${letter.id}">
+                                <i class="fas fa-check-double"></i> Oznacz jako przeczytany
+                            </button>` : ''
+                        }
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('open-letter-btn').style.display = new Date(letter.date) <= new Date() ? 'inline-block' : 'none';
+            document.getElementById('open-letter-btn').dataset.file = letter.fileName;
+            document.getElementById('letter-modal').style.display = 'block';
+            
+            // Dodaj obsługę oznaczania jako przeczytany
+            const markReadBtn = document.querySelector('.mark-read-btn');
+            if (markReadBtn) {
+                markReadBtn.addEventListener('click', function() {
+                    const letterId = this.dataset.id;
+                    markLetterAsRead(letterId);
+                });
+            }
+        }
+        
+        function markLetterAsRead(id) {
+            const letterIndex = lettersData.findIndex(l => l.id == id);
+            if (letterIndex !== -1) {
+                lettersData[letterIndex].read = true;
+                localStorage.setItem('love-letters', JSON.stringify(lettersData));
+                updateStats();
+                renderCalendar();
+                closeModal();
+            }
+        }
+        
+        function saveNewLetter() {
+            const date = document.getElementById('letter-date').value;
+            const title = document.getElementById('letter-title').value;
+            const content = document.getElementById('letter-content').value;
+            
+            if (!date || !title || !content) {
+                alert('Proszę wypełnić wszystkie pola!');
+                return;
+            }
+            
+            // Zapisz do localStorage (w rzeczywistości można zapisać do pliku)
+            const newLetter = {
+                id: lettersData.length + 1,
+                date: date,
+                title: title,
+                fileName: `${date.split('-').reverse().join('-')}.html`,
+                read: false,
+                description: `Nowy list dodany przez Ciebie`
+            };
+            
+            lettersData.push(newLetter);
+            localStorage.setItem('love-letters', JSON.stringify(lettersData));
+            
+            // Zapisz treść do pliku (w rzeczywistości potrzebowałbyś backendu)
+            alert('List został zapisany! W rzeczywistej aplikacji potrzebowałbyś backendu do zapisu plików.');
+            
+            // Wyczyść formularz
+            document.getElementById('letter-date').value = '';
+            document.getElementById('letter-title').value = '';
+            document.getElementById('letter-content').value = '';
+            
+            // Odśwież kalendarz
+            renderCalendar();
+            updateStats();
+        }
+        
+        function loadTemplate() {
+            // Tutaj można załadować szablon z pliku image.png
+            // W przykładzie używam prostego szablonu
+            const template = `<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List miłosny | [DATA]</title>
+    <link rel="stylesheet" href="../assets/css/letter-styles.css">
+    <style>
+        /* Style specyficzne dla tego listu */
+        .letter-container {
+            font-family: 'Georgia', serif;
+            background: url('../assets/images/paper-texture.jpg');
+            min-height: 100vh;
+            padding: 20px;
+            position: relative;
+        }
+        
+        .letter-paper {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(253, 245, 230, 0.95);
+            padding: 50px;
+            border-radius: 5px;
+            box-shadow: 0 0 30px rgba(0,0,0,0.15);
+            position: relative;
+            border: 1px solid #d4b483;
+        }
+        
+        .letter-header {
+            text-align: center;
+            margin-bottom: 50px;
+            border-bottom: 2px solid #e63946;
+            padding-bottom: 25px;
+        }
+        
+        .letter-date {
+            font-size: 1.3rem;
+            color: #e63946;
+            display: block;
+            margin-bottom: 10px;
+            font-style: italic;
+        }
+        
+        .letter-title {
+            font-size: 2.2rem;
+            color: #8b4513;
+            font-weight: bold;
+        }
+        
+        .letter-content {
+            font-size: 1.3rem;
+            line-height: 1.9;
+            color: #5d4037;
+            margin-bottom: 50px;
+            text-align: justify;
+        }
+        
+        .letter-content p {
+            margin-bottom: 25px;
+            text-indent: 40px;
+        }
+        
+        .letter-signature {
+            text-align: right;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px dashed #8b4513;
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.8rem;
+            color: #1d3557;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="letter-container">
+        <div class="letter-paper">
+            <div class="letter-header">
+                <span class="letter-date">[DATA]</span>
+                <span class="letter-title">[TYTUŁ LISTU]</span>
+            </div>
+            
+            <div class="letter-content">
+                <p>Moja Najdroższa Martusiu,</p>
+                
+                <p>[TREŚĆ TWOJEGO LISTU]</p>
+                
+                <div class="letter-signature">
+                    Z miłością,<br>
+                    Szymon
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>`;
+            
+            document.getElementById('letter-content').value = template;
+        }
+        
+        function previewNewLetter() {
+            const title = document.getElementById('letter-title').value || 'Przykładowy tytuł';
+            const content = document.getElementById('letter-content').value || 'Przykładowa treść listu...';
+            
+            document.getElementById('modal-title').textContent = `Podgląd nowego listu`;
+            document.getElementById('modal-body').innerHTML = `
+                <div class="new-letter-preview">
+                    <h4>${title}</h4>
+                    <div class="preview-html">
+                        <pre>${content.substring(0, 500)}${content.length > 500 ? '...' : ''}</pre>
+                    </div>
+                    <p class="preview-note"><i class="fas fa-exclamation-triangle"></i> To jest podgląd kodu HTML listu.</p>
+                </div>
+            `;
+            
+            document.getElementById('open-letter-btn').style.display = 'none';
+            document.getElementById('letter-modal').style.display = 'block';
+        }
+        
+        function closeModal() {
+            document.getElementById('letter-modal').style.display = 'none';
+        }
+        
+        function updateStats() {
+            const totalLetters = lettersData.length;
+            const readLetters = lettersData.filter(letter => letter.read).length;
+            const upcomingLetters = lettersData.filter(letter => new Date(letter.date) > new Date()).length;
+            
+            document.getElementById('letter-stats').innerHTML = `
+                Listy: ${readLetters}/${totalLetters} przeczytanych | ${upcomingLetters} nadchodzących
+            `;
+        }
+        
+        function createFloatingHearts() {
+            const container = document.querySelector('.container');
+            
+            for (let i = 0; i < 10; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.className = 'floating-heart';
+                    heart.innerHTML = '❤️';
+                    
+                    heart.style.left = Math.random() * 100 + 'vw';
+                    heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
+                    heart.style.opacity = Math.random() * 0.5 + 0.3;
+                    heart.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                    heart.style.animationDelay = Math.random() * 5 + 's';
+                    
+                    document.body.appendChild(heart);
+                    
+                    setTimeout(() => {
+                        if (heart.parentNode) {
+                            heart.parentNode.removeChild(heart);
+                        }
+                    }, 15000);
+                }, i * 500);
+            }
+        }
+    </script>
+</body>
+</html>

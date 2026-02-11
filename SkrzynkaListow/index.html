@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skrzynka Listów Miłosnych dla Martusi</title>
+    <link rel="stylesheet" href="assets/css/main-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Caveat:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+</head>
+<body>
+    <!-- Tło z efektem mgły -->
+    <div class="fog-background"></div>
+    
+    <!-- Główny kontener -->
+    <div class="container">
+        <!-- Nagłówek -->
+        <header class="main-header">
+            <div class="header-content">
+                <h1 class="title animate__animated animate__fadeInDown">
+                    <i class="fas fa-heart heart-icon"></i>
+                    Skrzynka Listów Miłosnych
+                    <i class="fas fa-heart heart-icon"></i>
+                </h1>
+                <p class="subtitle animate__animated animate__fadeIn animate__delay-1s">Dla Mojej Ukochanej Martusi</p>
+                <div class="date-info animate__animated animate__fadeIn animate__delay-2s">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span id="current-date">Ładuję datę...</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Główna skrzynka na listy -->
+        <main class="mailbox-container">
+            <div class="mailbox animate__animated animate__bounceInUp animate__delay-1s">
+                <!-- Skrzynka pocztowa -->
+                <div class="mailbox-body">
+                    <!-- Flaga skrzynki -->
+                    <div class="mailbox-flag">
+                        <div class="flag-top"></div>
+                        <div class="flag-pole"></div>
+                    </div>
+                    
+                    <!-- Drzwiczki skrzynki -->
+                    <div class="mailbox-door">
+                        <div class="mailbox-slot"></div>
+                        <div class="mailbox-handle" id="mailbox-handle">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="mailbox-number">13/14</div>
+                        <div class="love-label">
+                            <i class="fas fa-heart"></i>
+                            Martusi
+                            <i class="fas fa-heart"></i>
+                        </div>
+                    </div>
+                    
+                    <!-- Podstawa skrzynki -->
+                    <div class="mailbox-base"></div>
+                </div>
+                
+                <!-- Przycisk otwarcia skrzynki -->
+                <div class="open-mailbox-container">
+                    <button class="open-mailbox-btn" id="open-mailbox-btn">
+                        <i class="fas fa-envelope-open-text"></i>
+                        Otwórz Skrzynkę Miłości
+                        <i class="fas fa-key"></i>
+                    </button>
+                    <p class="instruction">Kliknij, aby otworzyć skrzynkę i zobaczyć listy</p>
+                </div>
+                
+                <!-- Zawartość skrzynki (po otwarciu) -->
+                <div class="mailbox-content" id="mailbox-content">
+                    <div class="letters-inside">
+                        <div class="letter-stack">
+                            <div class="letter letter-1" style="transform: rotate(-3deg);">
+                                <div class="letter-seal">
+                                    <i class="fas fa-heart"></i>
+                                </div>
+                                <span class="letter-date">10.02.2026</span>
+                            </div>
+                            <div class="letter letter-2" style="transform: rotate(2deg);">
+                                <div class="letter-seal">
+                                    <i class="fas fa-heart"></i>
+                                </div>
+                                <span class="letter-date">14.02.2026</span>
+                            </div>
+                            <div class="letter letter-3" style="transform: rotate(-1deg);">
+                                <div class="letter-seal">
+                                    <i class="fas fa-heart"></i>
+                                </div>
+                                <span class="letter-date">21.02.2026</span>
+                            </div>
+                        </div>
+                        
+                        <div class="go-to-calendar-container">
+                            <a href="calendar.html" class="go-to-calendar-btn" id="go-to-calendar-btn">
+                                <i class="fas fa-calendar-day"></i>
+                                Przejdź do Kalendarza Listów
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                            <p class="calendar-info">Znajdziesz tam wszystkie listy ułożone według daty</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Opis i informacje -->
+            <div class="mailbox-description animate__animated animate__fadeIn animate__delay-2s">
+                <div class="description-card">
+                    <h2><i class="fas fa-info-circle"></i> O Skrzynce Miłości</h2>
+                    <p>Ta skrzynka zawiera listy miłosne pisane specjalnie dla Ciebie, Martusiu. Każdy list to wyjątkowa wiadomość, która czeka na swój moment, by zostać przeczytana.</p>
+                    <div class="features">
+                        <div class="feature">
+                            <i class="fas fa-calendar-check"></i>
+                            <span>Listy na każdy tydzień</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-heartbeat"></i>
+                            <span>Pełne miłości i uczuć</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-gift"></i>
+                            <span>Specjalne niespodzianki</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <!-- Stopka -->
+        <footer class="main-footer">
+            <p>Stworzone z <i class="fas fa-heart love-footer"></i> przez Szymona dla Martusi</p>
+            <p class="copyright">© 2026 - Skrzynka Listów Miłosnych | Wszystkie prawa zastrzeżone</p>
+        </footer>
+    </div>
+
+    <!-- Dźwięki -->
+    <audio id="mailboxOpenSound" preload="auto">
+        <source src="https://assets.mixkit.co/sfx/preview/mixkit-creaky-door-open-2305.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="pageTurnSound" preload="auto">
+        <source src="https://assets.mixkit.co/sfx/preview/mixkit-page-turn-swipe-1491.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Skrypty -->
+    <script src="assets/js/script.js"></script>
+    <script>
+        // Inicjalizacja po załadowaniu strony
+        document.addEventListener('DOMContentLoaded', function() {
+            // Ustaw aktualną datę
+            const now = new Date();
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            document.getElementById('current-date').textContent = now.toLocaleDateString('pl-PL', options);
+            
+            // Dodaj obsługę przycisku otwarcia skrzynki
+            const openBtn = document.getElementById('open-mailbox-btn');
+            const mailboxContent = document.getElementById('mailbox-content');
+            const mailboxHandle = document.getElementById('mailbox-handle');
+            const goToCalendarBtn = document.getElementById('go-to-calendar-btn');
+            const mailboxOpenSound = document.getElementById('mailboxOpenSound');
+            
+            let isMailboxOpen = false;
+            
+            openBtn.addEventListener('click', function() {
+                if (!isMailboxOpen) {
+                    // Otwórz skrzynkę
+                    mailboxContent.style.display = 'block';
+                    mailboxHandle.classList.add('handle-pulled');
+                    
+                    // Animacja otwarcia
+                    setTimeout(() => {
+                        mailboxContent.classList.add('content-visible');
+                        openBtn.innerHTML = '<i class="fas fa-envelope"></i> Zamknij Skrzynkę <i class="fas fa-key"></i>';
+                        openBtn.classList.add('btn-closing');
+                        
+                        // Odtwórz dźwięk otwarcia
+                        try {
+                            mailboxOpenSound.currentTime = 0;
+                            mailboxOpenSound.play();
+                        } catch(e) {
+                            console.log("Dźwięk niedostępny");
+                        }
+                    }, 300);
+                    
+                    isMailboxOpen = true;
+                } else {
+                    // Zamknij skrzynkę
+                    mailboxContent.classList.remove('content-visible');
+                    mailboxHandle.classList.remove('handle-pulled');
+                    
+                    setTimeout(() => {
+                        mailboxContent.style.display = 'none';
+                        openBtn.innerHTML = '<i class="fas fa-envelope-open-text"></i> Otwórz Skrzynkę Miłości <i class="fas fa-key"></i>';
+                        openBtn.classList.remove('btn-closing');
+                    }, 500);
+                    
+                    isMailboxOpen = false;
+                }
+            });
+            
+            // Animacja przy najechaniu na przycisk kalendarza
+            if (goToCalendarBtn) {
+                goToCalendarBtn.addEventListener('mouseenter', function() {
+                    this.classList.add('btn-pulse');
+                });
+                
+                goToCalendarBtn.addEventListener('mouseleave', function() {
+                    this.classList.remove('btn-pulse');
+                });
+            }
+            
+            // Dodaj efekt "pływających" serduszek w tle
+            createFloatingHearts();
+        });
+        
+        function createFloatingHearts() {
+            const container = document.querySelector('.container');
+            const hearts = ['❤️', '💖', '💕', '💗', '💓', '💘', '💝', '💞'];
+            
+            for (let i = 0; i < 15; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.className = 'floating-heart';
+                    heart.innerHTML = hearts[Math.floor(Math.random() * hearts.length)];
+                    
+                    // Losowe pozycje
+                    heart.style.left = Math.random() * 100 + 'vw';
+                    heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
+                    heart.style.opacity = Math.random() * 0.5 + 0.3;
+                    heart.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                    heart.style.animationDelay = Math.random() * 5 + 's';
+                    
+                    document.body.appendChild(heart);
+                    
+                    // Usuń po animacji
+                    setTimeout(() => {
+                        if (heart.parentNode) {
+                            heart.parentNode.removeChild(heart);
+                        }
+                    }, 15000);
+                }, i * 300);
+            }
+        }
+    </script>
+</body>
+</html>
