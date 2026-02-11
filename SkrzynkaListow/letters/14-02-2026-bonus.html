@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Przepraszam Cię, Martusiu | List z serca</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e9e9e9 100%);
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .letter-paper {
+            max-width: 700px;
+            margin: 20px auto;
+            background: #fff9f5;
+            padding: 50px;
+            border-radius: 5px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            position: relative;
+            border: 1px solid #d4b483;
+            background-image: linear-gradient(to bottom, rgba(255,255,255,0.9), rgba(255,255,255,0.9)), 
+                              url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M50 20 L60 40 L80 40 L65 55 L70 80 L50 68 L30 80 L35 55 L20 40 L40 40 Z" fill="%23ffe6e6" opacity="0.2"/></svg>');
+        }
+        
+        .letter-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 25px;
+            border-bottom: 2px solid #c49a6c;
+            position: relative;
+        }
+        
+        .letter-header::after {
+            content: '❤️';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            padding: 0 20px;
+            font-size: 1.5rem;
+        }
+        
+        .letter-date {
+            font-size: 1rem;
+            color: #8b7356;
+            display: block;
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+        
+        .letter-title {
+            font-size: 2.5rem;
+            color: #6b4e3a;
+            font-weight: bold;
+            font-family: 'Dancing Script', 'Georgia', cursive;
+            margin-bottom: 10px;
+        }
+        
+        .letter-content {
+            font-size: 1.2rem;
+            line-height: 1.9;
+            color: #4a3b2c;
+            margin-bottom: 50px;
+            text-align: justify;
+        }
+        
+        .letter-content p {
+            margin-bottom: 25px;
+            text-indent: 40px;
+        }
+        
+        .highlight {
+            background: rgba(255, 230, 230, 0.7);
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-weight: bold;
+            color: #b33b3b;
+        }
+        
+        .signature {
+            text-align: right;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px dashed #c49a6c;
+            font-family: 'Dancing Script', 'Georgia', cursive;
+            font-size: 2rem;
+            color: #6b4e3a;
+        }
+        
+        .apology-box {
+            background: rgba(230, 230, 250, 0.5);
+            padding: 25px;
+            border-radius: 15px;
+            margin: 30px 0;
+            border-left: 6px solid #b33b3b;
+            font-style: italic;
+        }
+        
+        .promise-list {
+            list-style: none;
+            margin: 25px 0;
+        }
+        
+        .promise-list li {
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            font-size: 1.1rem;
+        }
+        
+        .promise-list li::before {
+            content: '🤝';
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        
+        @media (max-width: 768px) {
+            .letter-paper {
+                padding: 30px 25px;
+                margin: 10px;
+            }
+            
+            .letter-title {
+                font-size: 2rem;
+            }
+            
+            .letter-content {
+                font-size: 1.1rem;
+                line-height: 1.8;
+            }
+            
+            .signature {
+                font-size: 1.8rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .letter-paper {
+                padding: 25px 20px;
+            }
+            
+            .letter-title {
+                font-size: 1.7rem;
+            }
+            
+            .letter-content {
+                font-size: 1rem;
+                text-indent: 30px;
+            }
+            
+            .signature {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="letter-paper">
+        <div class="letter-header">
+            <span class="letter-date">🌹 Dziś, z całego serca 🌹</span>
+            <h1 class="letter-title">Przepraszam Cię, Martusiu</h1>
+        </div>
+        
+        <div class="letter-content">
+            <p>Moja Najukochańsza Martusiu,</p>
+            
+            <p>Piszę ten list, bo słowa "przepraszam" czasami nie chcą przejść mi przez gardło, chociaż <span class="highlight">kołaczą w sercu</span>. Wiem, że ostatnio Cię zraniłem. Wiem, że moje zachowanie było nie fair. I wiem, że zasługujesz na kogoś lepszego – ale <strong>proszę Cię, nie odchodź</strong>. Daj mi szansę, żebym Ci udowodnił, że potrafię się zmienić.</p>
+            
+            <p>Martusiu, ja <strong>nie robię tego specjalnie</strong>. Naprawdę. To nie jest tak, że Cię nie kocham albo że jesteś dla mnie nieważna. Ty jesteś <strong>najważniejszą osobą w moim życiu</strong>. I właśnie dlatego tak bardzo boli mnie świadomość, że to ja sprawiłem Ci przykrość.</p>
+            
+            <div class="apology-box">
+                <p style="font-size: 1.3rem; margin-bottom: 10px;">💔 Przepraszam za:</p>
+                <ul class="promise-list">
+                    <li><strong>Ignorowanie</strong> – czasami specjalnie, bo byłem głupi i chciałem Cię zirytować, czasami nie specjalnie, bo życie mnie przerosło. I za jedno, i za drugie – przepraszam.</li>
+                    <li><strong>Chwile, gdy nie odpisywałem</strong> – a Ty czekałaś na moją wiadomość z nadzieją.</li>
+                    <li><strong>Dni, gdy nie umiałem powiedzieć "kocham"</strong> – chociaż kochałem najbardziej na świecie.</li>
+                    <li><strong>Momenty, w których Cię zawiodłem</strong> – obiecywałem i nie dotrzymywałem słowa.</li>
+                    <li><strong>To, że musiałaś się domyślać, jak bardzo Cię kocham</strong> – zamiast słyszeć to ode mnie każdego dnia.</li>
+                </ul>
+            </div>
+            
+            <p>Wiem, że przeprosiny to tylko słowa. Wiem, że <strong>czyny liczą się bardziej</strong>. I obiecuję Ci, Martusiu, że każdym kolejnym dniem będę udowadniał, jak bardzo mi zależy. Nie dlatego, że muszę – ale dlatego, że <strong>chcę być dla Ciebie lepszym człowiekiem</strong>.</p>
+            
+            <p style="font-size: 1.3rem; text-align: center; margin: 40px 0; font-weight: bold; color: #b33b3b;">
+                „Miłość nie polega na tym, żeby patrzeć na siebie nawzajem, ale żeby patrzeć razem w tym samym kierunku.”
+            </p>
+            
+            <p>Martusiu, ja chcę patrzeć z Tobą. <strong>Do końca świata. Do ostatniego dnia.</strong> Nie wyobrażam sobie życia bez Ciebie. Nie wyobrażam sobie poranka bez Twojego uśmiechu, wieczoru bez Twojego głosu, przyszłości bez Ciebie u mojego boku.</p>
+            
+            <p>Jesteś moim domem. Jesteś moją ostoją. Jesteś <strong>jedyną kobietą, którą kocham i kochałem</strong>. I obiecuję – już nigdy nie pozwolę, żebyś zwątpiła w moją miłość.</p>
+            
+            <p style="margin-top: 40px; font-size: 1.2rem; text-align: center;">
+                <strong>Daj mi szansę. Jeszcze tylko tę jedną, ostatnią.</strong><br>
+                Obiecuję, że nie pożałujesz.
+            </p>
+            
+            <div class="signature">
+                Z miłością i skruchą,<br>
+                <span style="font-size: 2.2rem; color: #b33b3b;">Twój Szymon</span>
+            </div>
+            
+            <p style="margin-top: 40px; font-size: 0.9rem; color: #999; text-align: center; border-top: 1px solid #eee; padding-top: 20px;">
+                ✉️ Jeśli przeczytasz ten list do końca – wiedz, że każde słowo jest prawdą. Kocham Cię. Zawsze i na zawsze.
+            </p>
+        </div>
+    </div>
+</body>
+</html>
