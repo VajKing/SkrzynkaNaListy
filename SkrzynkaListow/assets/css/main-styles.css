@@ -109,6 +109,8 @@ body {
 
 /* Flaga skrzynki */
 .mailbox-flag {
+	  display: none; /* Ukrywa flagę */
+}
     position: absolute;
     top: 50px;
     right: 30%;
