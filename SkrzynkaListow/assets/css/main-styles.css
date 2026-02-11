@@ -35,11 +35,14 @@ body {
     z-index: 1;
 }
 
-/* Nagłówek */
+/* ============================================ */
+/* NAGŁÓWEK - POPRAWIONY DLA TELEFONU          */
+/* ============================================ */
+
 .main-header {
     text-align: center;
-    margin-bottom: 40px;
-    padding: 20px;
+    margin-bottom: 30px;
+    padding: 20px 15px;
     background: rgba(255, 255, 255, 0.85);
     border-radius: 20px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
@@ -49,15 +52,20 @@ body {
 
 .header-content .title {
     font-family: 'Playfair Display', serif;
-    font-size: 2.8rem;
+    font-size: 2.5rem;
     color: #8b0000;
     margin-bottom: 10px;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
 }
 
 .heart-icon {
     color: #ff4757;
-    margin: 0 15px;
+    margin: 0 5px;
     animation: heartbeat 1.5s infinite;
 }
 
@@ -72,10 +80,10 @@ body {
     font-size: 1.1rem;
     color: #666;
     background: rgba(255, 255, 255, 0.7);
-    padding: 10px 20px;
+    padding: 8px 20px;
     border-radius: 50px;
     display: inline-block;
-    margin-top: 10px;
+    margin-top: 5px;
 }
 
 .date-info i {
@@ -88,7 +96,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 40px;
+    gap: 30px;
     margin-bottom: 40px;
 }
 
@@ -101,7 +109,7 @@ body {
 
 .mailbox-body {
     position: relative;
-    height: 400px;
+    height: 380px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -109,20 +117,12 @@ body {
 
 /* Flaga skrzynki */
 .mailbox-flag {
-	  display: none; /* Ukrywa flagę */
-}
-    position: absolute;
-    top: 50px;
-    right: 30%;
-    transform-origin: bottom left;
-    transform: rotate(-30deg);
-    transition: transform 1s ease;
-    z-index: 10;
+       display: none; /* Ukrywa flagę */
 }
 
 .flag-top {
-    width: 120px;
-    height: 80px;
+    width: 100px;
+    height: 70px;
     background: linear-gradient(135deg, #ff4757, #ff6b81);
     border-radius: 10px 10px 0 10px;
     position: relative;
@@ -135,23 +135,23 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 2rem;
+    font-size: 1.8rem;
 }
 
 .flag-pole {
     width: 8px;
-    height: 150px;
+    height: 120px;
     background: #8b4513;
     position: absolute;
-    bottom: -150px;
+    bottom: -120px;
     left: 0;
     border-radius: 4px;
 }
 
 /* Drzwiczki skrzynki */
 .mailbox-door {
-    width: 400px;
-    height: 300px;
+    width: 380px;
+    height: 280px;
     background: linear-gradient(145deg, #a0522d, #8b4513);
     border-radius: 10px;
     position: relative;
@@ -172,8 +172,8 @@ body {
 }
 
 .mailbox-slot {
-    width: 350px;
-    height: 20px;
+    width: 300px;
+    height: 18px;
     background: #333;
     border-radius: 10px;
     margin-top: 20px;
@@ -193,17 +193,17 @@ body {
 }
 
 .mailbox-handle {
-    width: 60px;
-    height: 60px;
+    width: 55px;
+    height: 55px;
     background: radial-gradient(circle, #ffd700, #daa520);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     color: #8b4513;
     cursor: pointer;
-    margin-top: 40px;
+    margin-top: 30px;
     box-shadow: 
         0 5px 15px rgba(0, 0, 0, 0.3),
         inset 0 2px 5px rgba(255, 255, 255, 0.5);
@@ -224,7 +224,7 @@ body {
 .mailbox-number {
     position: absolute;
     bottom: 20px;
-    font-size: 2.5rem;
+    font-size: 2.2rem;
     font-family: 'Caveat', cursive;
     color: #ffd700;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
@@ -234,13 +234,14 @@ body {
     position: absolute;
     top: 20px;
     background: rgba(255, 255, 255, 0.9);
-    padding: 10px 20px;
+    padding: 8px 18px;
     border-radius: 50px;
     font-family: 'Dancing Script', cursive;
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     color: #ff4757;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     border: 2px dashed #ff4757;
+    white-space: nowrap;
 }
 
 .love-label i {
@@ -250,25 +251,30 @@ body {
 
 /* Podstawa skrzynki */
 .mailbox-base {
-    width: 450px;
-    height: 40px;
+    width: 420px;
+    height: 35px;
     background: linear-gradient(to bottom, #5d2906, #8b4513);
     border-radius: 5px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
-/* Przycisk otwarcia skrzynki */
+/* ============================================ */
+/* PRZYCISK OTWARCIA SKRZYNKI - POPRAWIONY     */
+/* ============================================ */
+
 .open-mailbox-container {
-    margin-top: 30px;
+    margin-top: 20px;
     text-align: center;
+    width: 100%;
+    padding: 0 10px;
 }
 
 .open-mailbox-btn {
     background: linear-gradient(135deg, #ff4757, #ff6b81);
     color: white;
     border: none;
-    padding: 18px 35px;
-    font-size: 1.4rem;
+    padding: 16px 30px;
+    font-size: 1.3rem;
     border-radius: 50px;
     cursor: pointer;
     font-weight: bold;
@@ -277,18 +283,26 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     display: inline-flex;
     align-items: center;
-    gap: 15px;
+    justify-content: center;
+    gap: 12px;
     position: relative;
     overflow: hidden;
+    width: auto;
+    max-width: 100%;
+    white-space: nowrap;
+}
+
+.open-mailbox-btn i {
+    font-size: 1.2rem;
 }
 
 .open-mailbox-btn:hover {
-    transform: translateY(-5px);
+    transform: translateY(-3px);
     box-shadow: 0 15px 30px rgba(255, 71, 87, 0.6);
 }
 
 .open-mailbox-btn:active {
-    transform: translateY(-2px);
+    transform: translateY(-1px);
 }
 
 .open-mailbox-btn.btn-closing {
@@ -296,10 +310,10 @@ body {
 }
 
 .instruction {
-    margin-top: 15px;
+    margin-top: 12px;
     color: #666;
     font-style: italic;
-    font-size: 1rem;
+    font-size: 0.95rem;
 }
 
 /* Zawartość skrzynki */
@@ -315,7 +329,7 @@ body {
 
 .letters-inside {
     background: rgba(255, 255, 255, 0.95);
-    padding: 40px;
+    padding: 30px 25px;
     border-radius: 20px;
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
     border: 2px solid #ffd700;
@@ -326,13 +340,13 @@ body {
     flex-direction: column;
     align-items: center;
     gap: 15px;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
     position: relative;
 }
 
 .letter {
-    width: 300px;
-    height: 180px;
+    width: 280px;
+    height: 160px;
     background: linear-gradient(135deg, #fffaf0, #f5f5dc);
     border-radius: 10px;
     position: relative;
@@ -346,7 +360,7 @@ body {
 }
 
 .letter:hover {
-    transform: translateY(-10px) scale(1.05);
+    transform: translateY(-8px) scale(1.03);
     z-index: 10;
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
 }
@@ -355,14 +369,14 @@ body {
     position: absolute;
     top: -15px;
     right: -15px;
-    width: 60px;
-    height: 60px;
+    width: 55px;
+    height: 55px;
     background: radial-gradient(circle, #ff4757, #ff3838);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     color: white;
     box-shadow: 0 5px 15px rgba(255, 71, 87, 0.5);
     border: 3px solid white;
@@ -370,7 +384,7 @@ body {
 
 .letter-date {
     font-family: 'Caveat', cursive;
-    font-size: 2.2rem;
+    font-size: 2rem;
     color: #8b4513;
     font-weight: bold;
 }
@@ -383,21 +397,23 @@ body {
 .go-to-calendar-btn {
     display: inline-flex;
     align-items: center;
-    gap: 15px;
+    justify-content: center;
+    gap: 12px;
     background: linear-gradient(135deg, #3742fa, #5352ed);
     color: white;
     text-decoration: none;
-    padding: 18px 35px;
-    font-size: 1.4rem;
+    padding: 16px 30px;
+    font-size: 1.3rem;
     border-radius: 50px;
     font-weight: bold;
     transition: all 0.3s ease;
     box-shadow: 0 10px 25px rgba(55, 66, 250, 0.4);
     margin-top: 20px;
+    white-space: nowrap;
 }
 
 .go-to-calendar-btn:hover {
-    transform: translateY(-5px) scale(1.05);
+    transform: translateY(-3px) scale(1.02);
     box-shadow: 0 15px 30px rgba(55, 66, 250, 0.6);
 }
 
@@ -406,12 +422,15 @@ body {
 }
 
 .calendar-info {
-    margin-top: 15px;
+    margin-top: 12px;
     color: #666;
-    font-size: 1rem;
+    font-size: 0.95rem;
 }
 
-/* Opis skrzynki */
+/* ============================================ */
+/* O SKRZYNCE MIŁOŚCI - POPRAWIONE            */
+/* ============================================ */
+
 .mailbox-description {
     width: 100%;
     max-width: 800px;
@@ -419,7 +438,7 @@ body {
 
 .description-card {
     background: rgba(255, 255, 255, 0.95);
-    padding: 30px;
+    padding: 25px 20px;
     border-radius: 20px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     border: 2px solid #ffd700;
@@ -427,9 +446,9 @@ body {
 
 .description-card h2 {
     color: #8b0000;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     font-family: 'Playfair Display', serif;
-    font-size: 2rem;
+    font-size: 1.8rem;
     display: flex;
     align-items: center;
     gap: 10px;
@@ -437,46 +456,48 @@ body {
 
 .description-card h2 i {
     color: #ff4757;
+    font-size: 1.6rem;
 }
 
 .description-card p {
-    line-height: 1.6;
-    margin-bottom: 25px;
-    font-size: 1.1rem;
+    line-height: 1.5;
+    margin-bottom: 20px;
+    font-size: 1rem;
     color: #555;
 }
 
 .features {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 15px;
     justify-content: space-around;
 }
 
 .feature {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
     background: rgba(255, 245, 245, 0.8);
-    padding: 12px 20px;
+    padding: 10px 18px;
     border-radius: 50px;
     border: 1px solid #ffcccc;
 }
 
 .feature i {
     color: #ff4757;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
 }
 
 .feature span {
     font-weight: 500;
     color: #555;
+    font-size: 0.95rem;
 }
 
 /* Stopka */
 .main-footer {
     text-align: center;
-    padding: 25px;
+    padding: 20px;
     background: rgba(255, 255, 255, 0.9);
     border-radius: 20px;
     margin-top: 40px;
@@ -485,7 +506,8 @@ body {
 
 .main-footer p {
     color: #666;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
+    font-size: 0.95rem;
 }
 
 .love-footer {
@@ -495,7 +517,7 @@ body {
 }
 
 .copyright {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     color: #888;
 }
 
@@ -541,99 +563,86 @@ body {
     50% { transform: scale(1.05); }
 }
 
-/* Responsywność */
+/* ============================================ */
+/* RESPONSYWNOŚĆ - POPRAWIONA DLA TELEFONU     */
+/* ============================================ */
+
 @media (max-width: 768px) {
     .container {
-        padding: 15px;
+        padding: 10px;
+    }
+    
+    /* NAGŁÓWEK - MNIEJSZY */
+    .main-header {
+        padding: 15px 10px;
+        margin-bottom: 20px;
     }
     
     .header-content .title {
-        font-size: 2rem;
+        font-size: 1.7rem;
+        gap: 8px;
+    }
+    
+    .heart-icon {
+        font-size: 1.5rem;
     }
     
     .subtitle {
-        font-size: 1.5rem;
+        font-size: 1.4rem;
+        margin-bottom: 10px;
     }
     
-    .mailbox-door {
-        width: 320px;
-        height: 240px;
+    .date-info {
+        font-size: 0.9rem;
+        padding: 6px 15px;
     }
     
-    .mailbox-slot {
-        width: 280px;
-    }
-    
-    .mailbox-base {
-        width: 360px;
-    }
-    
-    .mailbox-flag {
-        right: 20%;
-    }
-    
-    .flag-top {
-        width: 90px;
-        height: 60px;
-    }
-    
-    .flag-top::after {
-        font-size: 1.5rem;
-    }
-    
-    .letter {
-        width: 260px;
-        height: 160px;
-    }
-    
-    .letter-date {
-        font-size: 1.8rem;
-    }
-    
-    .open-mailbox-btn,
-    .go-to-calendar-btn {
-        padding: 15px 25px;
-        font-size: 1.2rem;
-    }
-    
-    .description-card h2 {
-        font-size: 1.7rem;
-    }
-    
-    .love-label {
-        font-size: 1.5rem;
-        top: 10px;
-        padding: 8px 15px;
-    }
-}
-
-@media (max-width: 480px) {
-    .header-content .title {
-        font-size: 1.7rem;
+    /* SKRZYNKA - MNIEJSZA */
+    .mailbox-body {
+        height: auto;
+        min-height: 300px;
     }
     
     .mailbox-door {
         width: 280px;
-        height: 210px;
+        height: 220px;
+        border-width: 6px;
     }
     
     .mailbox-slot {
         width: 240px;
-    }
-    
-    .mailbox-base {
-        width: 310px;
+        height: 15px;
+        margin-top: 15px;
     }
     
     .mailbox-handle {
-        width: 50px;
-        height: 50px;
+        width: 45px;
+        height: 45px;
         font-size: 1.2rem;
+        margin-top: 25px;
+    }
+    
+    .mailbox-base {
+        width: 320px;
+        height: 30px;
     }
     
     .mailbox-number {
-        font-size: 2rem;
+        font-size: 1.8rem;
         bottom: 15px;
+    }
+    
+    .love-label {
+        font-size: 1.3rem;
+        padding: 6px 15px;
+        top: 15px;
+        white-space: nowrap;
+    }
+    
+    /* FLAGA - MNIEJSZA */
+    .mailbox-flag {
+        top: 30px;
+        right: 15%;
     }
     
     .flag-top {
@@ -641,49 +650,249 @@ body {
         height: 50px;
     }
     
+    .flag-top::after {
+        font-size: 1.5rem;
+    }
+    
+    .flag-pole {
+        height: 90px;
+        bottom: -90px;
+    }
+    
+    /* PRZYCISK - POPRAWIONY! */
+    .open-mailbox-btn {
+        padding: 14px 25px;
+        font-size: 1.1rem;
+        gap: 10px;
+        white-space: normal; /* POZWALA NA ZŁAMANIE TEKSTU */
+        width: 100%;
+        max-width: 350px;
+    }
+    
+    .open-mailbox-btn i {
+        font-size: 1.1rem;
+    }
+    
+    .instruction {
+        font-size: 0.85rem;
+        padding: 0 15px;
+    }
+    
+    /* LISTY W ŚRODKU */
     .letters-inside {
-        padding: 25px;
+        padding: 20px 15px;
     }
     
     .letter {
-        width: 220px;
+        width: 240px;
         height: 140px;
+    }
+    
+    .letter-date {
+        font-size: 1.6rem;
+    }
+    
+    .letter-seal {
+        width: 45px;
+        height: 45px;
+        font-size: 1.3rem;
+        top: -12px;
+        right: -12px;
+    }
+    
+    /* PRZYCISK KALENDARZA */
+    .go-to-calendar-btn {
+        padding: 14px 25px;
+        font-size: 1.1rem;
+        gap: 10px;
+        white-space: normal;
+        width: 100%;
+        max-width: 350px;
+    }
+    
+    /* O SKRZYNCE - MNIEJSZE */
+    .description-card {
+        padding: 20px 15px;
+    }
+    
+    .description-card h2 {
+        font-size: 1.5rem;
+    }
+    
+    .description-card h2 i {
+        font-size: 1.4rem;
+    }
+    
+    .description-card p {
+        font-size: 0.95rem;
+        margin-bottom: 15px;
+    }
+    
+    .features {
+        gap: 10px;
+        flex-direction: column;
     }
     
     .feature {
         width: 100%;
         justify-content: center;
+        padding: 8px 15px;
     }
     
-    .features {
-        flex-direction: column;
+    .feature i {
+        font-size: 1rem;
+    }
+    
+    .feature span {
+        font-size: 0.9rem;
+    }
+    
+    /* STOPKA */
+    .main-footer {
+        padding: 15px;
+        margin-top: 30px;
+    }
+    
+    .main-footer p {
+        font-size: 0.85rem;
+    }
+    
+    .copyright {
+        font-size: 0.75rem;
     }
 }
 
-/* Specjalnie dla iPhone 16 Pro Max */
-@media only screen and (device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) {
-    .mailbox-body {
-        height: 350px;
+@media (max-width: 480px) {
+    /* JESZCZE MNIEJSZE DLA MAŁYCH TELEFONÓW */
+    .header-content .title {
+        font-size: 1.5rem;
+    }
+    
+    .heart-icon {
+        font-size: 1.3rem;
+    }
+    
+    .subtitle {
+        font-size: 1.2rem;
     }
     
     .mailbox-door {
-        width: 340px;
+        width: 250px;
+        height: 200px;
+    }
+    
+    .mailbox-slot {
+        width: 210px;
     }
     
     .mailbox-base {
-        width: 380px;
-    }
-    
-    .letter {
         width: 280px;
     }
     
-    .container {
-        padding: 20px 10px;
+    .mailbox-handle {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+    
+    .love-label {
+        font-size: 1.1rem;
+        padding: 5px 12px;
+    }
+    
+    .mailbox-number {
+        font-size: 1.6rem;
+    }
+    
+    .flag-top {
+        width: 60px;
+        height: 45px;
+    }
+    
+    .flag-top::after {
+        font-size: 1.3rem;
+    }
+    
+    .open-mailbox-btn,
+    .go-to-calendar-btn {
+        padding: 12px 20px;
+        font-size: 1rem;
+        max-width: 280px;
+    }
+    
+    .letter {
+        width: 220px;
+        height: 130px;
+    }
+    
+    .letter-date {
+        font-size: 1.4rem;
+    }
+    
+    .description-card h2 {
+        font-size: 1.3rem;
     }
 }
 
-/* Dla ekranów 1920x1080 (komputer) */
+/* ============================================ */
+/* SPECJALNIE DLA IPHONE 16 PRO MAX            */
+/* ============================================ */
+
+@media only screen and (device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) {
+    .container {
+        padding: 12px;
+    }
+    
+    .main-header {
+        padding: 15px 12px;
+    }
+    
+    .header-content .title {
+        font-size: 1.8rem;
+    }
+    
+    .subtitle {
+        font-size: 1.5rem;
+    }
+    
+    .mailbox-door {
+        width: 300px;
+        height: 230px;
+    }
+    
+    .mailbox-slot {
+        width: 260px;
+    }
+    
+    .mailbox-base {
+        width: 340px;
+    }
+    
+    .love-label {
+        font-size: 1.4rem;
+        top: 15px;
+    }
+    
+    .open-mailbox-btn,
+    .go-to-calendar-btn {
+        padding: 15px 28px;
+        font-size: 1.15rem;
+        max-width: 320px;
+    }
+    
+    .description-card h2 {
+        font-size: 1.6rem;
+    }
+    
+    .description-card p {
+        font-size: 1rem;
+    }
+}
+
+/* ============================================ */
+/* DLA EKRANÓW 1920x1080 (KOMPUTER)            */
+/* ============================================ */
+
 @media (min-width: 1920px) {
     .container {
         max-width: 1400px;
@@ -691,28 +900,55 @@ body {
     }
     
     .header-content .title {
-        font-size: 3.5rem;
+        font-size: 3.2rem;
+    }
+    
+    .subtitle {
+        font-size: 2rem;
     }
     
     .mailbox-door {
-        width: 500px;
-        height: 350px;
+        width: 450px;
+        height: 320px;
     }
     
     .mailbox-slot {
-        width: 420px;
+        width: 380px;
     }
     
     .mailbox-base {
-        width: 550px;
+        width: 500px;
+    }
+    
+    .love-label {
+        font-size: 1.9rem;
+        padding: 10px 25px;
+    }
+    
+    .open-mailbox-btn,
+    .go-to-calendar-btn {
+        padding: 18px 40px;
+        font-size: 1.5rem;
     }
     
     .letter {
-        width: 350px;
-        height: 200px;
+        width: 320px;
+        height: 180px;
     }
     
     .letter-date {
-        font-size: 2.5rem;
+        font-size: 2.2rem;
+    }
+    
+    .description-card h2 {
+        font-size: 2.2rem;
+    }
+    
+    .description-card p {
+        font-size: 1.2rem;
+    }
+    
+    .feature span {
+        font-size: 1.1rem;
     }
 }
