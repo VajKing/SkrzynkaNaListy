@@ -390,42 +390,54 @@
             }
         }
         
-        function updateCountdown(targetDate) {
-            const now = new Date();
-            const diff = targetDate - now;
+       function updateCountdown(targetDate) {
+    const now = new Date();
+    const diff = targetDate - now;
+    
+    if (diff <= 0) {
+        document.getElementById('countdown-timer').innerHTML = `
+            <div class="countdown-finished">
+                <i class="fas fa-gift"></i> List jest już dostępny!
+            </div>
+        `;
+        return;
+    }
+    
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+    
+    document.getElementById('days').textContent = days.toString().padStart(2, '0');
+    document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+    document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+    document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+    
+    // Aktualizuj również małe odliczanie na kartach listów - POPRAWIONE!
+    document.querySelectorAll('.countdown-small').forEach(el => {
+        const letterDate = new Date(el.dataset.date);
+        const letterDiff = letterDate - now;
+        
+        if (letterDiff > 0) {
+            const letterDays = Math.floor(letterDiff / (1000 * 60 * 60 * 24));
+            const letterHours = Math.floor((letterDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             
-            if (diff <= 0) {
-                document.getElementById('countdown-timer').innerHTML = `
-                    <div class="countdown-finished">
-                        <i class="fas fa-gift"></i> List jest już dostępny!
-                    </div>
-                `;
-                return;
+            if (letterDays > 0) {
+                if (letterDays === 1) el.textContent = `za 1 dzień`;
+                else if (letterDays < 5) el.textContent = `za ${letterDays} dni`;
+                else el.textContent = `za ${letterDays} dni`;
+            } else if (letterHours > 0) {
+                if (letterHours === 1) el.textContent = `za 1 godzinę`;
+                else if (letterHours < 5) el.textContent = `za ${letterHours} godziny`;
+                else el.textContent = `za ${letterHours} godzin`;
+            } else {
+                el.textContent = `za chwilę`;
             }
-            
-            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-            
-            document.getElementById('days').textContent = days.toString().padStart(2, '0');
-            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
-            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
-            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
-            
-            // Aktualizuj również małe odliczanie na kartach listów
-            document.querySelectorAll('.countdown-small').forEach(el => {
-                const letterDate = new Date(el.dataset.date);
-                const letterDiff = letterDate - now;
-                
-                if (letterDiff > 0) {
-                    const letterDays = Math.floor(letterDiff / (1000 * 60 * 60 * 24));
-                    el.textContent = `za ${letterDays} dni`;
-                } else {
-                    el.textContent = 'Dostępny';
-                }
-            });
+        } else {
+            el.textContent = 'Dostępny! 🎉';
         }
+    });
+}
         
         function formatDate(date) {
             const day = date.getDate();
