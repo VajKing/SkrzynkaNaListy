@@ -7,7 +7,13 @@
     <link rel="stylesheet" href="../assets/css/letter-styles.css">
     <style>
         /* Style specyficzne dla tego listu */
-        .letter-container {
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
             font-family: 'Georgia', serif;
             background: url('../assets/images/paper-texture.jpg');
             min-height: 100vh;
@@ -15,9 +21,13 @@
             position: relative;
         }
         
-        .letter-paper {
+        .letter-container {
             max-width: 800px;
             margin: 0 auto;
+            position: relative;
+        }
+        
+        .letter-paper {
             background: rgba(253, 245, 230, 0.95);
             padding: 50px;
             border-radius: 5px;
@@ -26,7 +36,6 @@
             border: 1px solid #d4b483;
         }
         
-        /* Efekt zagiętego rogu */
         .letter-paper::before {
             content: '';
             position: absolute;
@@ -148,7 +157,6 @@
             transform: translateX(-5px);
         }
         
-        /* Efekt pieczątki miłości */
         .love-stamp {
             position: absolute;
             bottom: 30px;
@@ -171,6 +179,161 @@
             font-size: 1.5rem;
             color: #e63946;
             transform: rotate(-15deg);
+        }
+        
+        /* ============================================ */
+        /* ANIMACJA OTWIERANIA ZAPIECZĘTOWANEGO LISTU  */
+        /* ============================================ */
+        
+        .envelope-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 20000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: fadeOut 1s ease 4s forwards;
+            pointer-events: none;
+        }
+        
+        .envelope {
+            width: 320px;
+            height: 220px;
+            background: #f4e4c1;
+            position: relative;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+            animation: openEnvelope 2s ease forwards;
+            transform-style: preserve-3d;
+            border: 2px solid #8b4513;
+        }
+        
+        .envelope::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #e5d5b1;
+            clip-path: polygon(0 0, 100% 0, 50% 40%);
+            z-index: 1;
+        }
+        
+        .envelope-flap {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #d4b483;
+            clip-path: polygon(0 0, 100% 0, 50% 35%);
+            transform-origin: top;
+            animation: openFlap 1s ease 1.2s forwards;
+            z-index: 3;
+            border-bottom: 3px solid #8b4513;
+        }
+        
+        .envelope-seal {
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 70px;
+            height: 70px;
+            background: #c44f4f;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            color: #ffd700;
+            box-shadow: 0 0 0 4px #8b4513, 0 10px 20px rgba(0,0,0,0.3);
+            z-index: 4;
+            animation: breakSeal 0.6s ease 1.8s forwards;
+        }
+        
+        .envelope-letter {
+            position: absolute;
+            bottom: 15px;
+            left: 25px;
+            width: 270px;
+            height: 160px;
+            background: #fff9f0;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.4rem;
+            color: #8b4513;
+            transform: translateY(0);
+            animation: slideOutLetter 1s ease 2.4s forwards;
+            z-index: 2;
+            padding: 20px;
+            text-align: center;
+            border-left: 4px solid #e63946;
+            opacity: 0;
+        }
+        
+        @keyframes openEnvelope {
+            0% {
+                transform: scale(0.3);
+                opacity: 0;
+            }
+            50% {
+                transform: scale(1.1);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes openFlap {
+            0% {
+                transform: rotateX(0deg);
+            }
+            100% {
+                transform: rotateX(180deg);
+                opacity: 0.9;
+            }
+        }
+        
+        @keyframes breakSeal {
+            0% {
+                transform: translate(-50%, -50%) scale(1);
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1.4);
+            }
+            100% {
+                transform: translate(-50%, -200%) scale(0);
+                opacity: 0;
+            }
+        }
+        
+        @keyframes slideOutLetter {
+            0% {
+                transform: translateY(0);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(-70px);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes fadeOut {
+            to {
+                opacity: 0;
+                visibility: hidden;
+            }
         }
         
         @keyframes fadeIn {
@@ -225,9 +388,25 @@
             .love-stamp::after {
                 font-size: 1.2rem;
             }
+            
+            .envelope {
+                width: 280px;
+                height: 190px;
+            }
+            
+            .envelope-letter {
+                width: 230px;
+                height: 130px;
+                left: 25px;
+                font-size: 1.2rem;
+            }
         }
         
         @media (max-width: 480px) {
+            .letter-paper {
+                padding: 20px;
+            }
+            
             .letter-content {
                 font-size: 1.1rem;
                 text-indent: 30px;
@@ -243,17 +422,48 @@
                 top: 15px;
                 left: 15px;
             }
+            
+            .envelope {
+                width: 240px;
+                height: 160px;
+            }
+            
+            .envelope-letter {
+                width: 190px;
+                height: 110px;
+                left: 25px;
+                font-size: 1rem;
+            }
+            
+            .envelope-seal {
+                width: 50px;
+                height: 50px;
+                font-size: 1.6rem;
+            }
         }
     </style>
-    <!-- Dodajemy czcionkę odręczną dla podpisu -->
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <button class="back-button" onclick="window.history.back()">← Wróć do kalendarza</button>
     
+    <!-- Animacja otwierania zapieczętowanego listu -->
+    <div class="envelope-animation" id="envelopeAnimation">
+        <div class="envelope">
+            <div class="envelope-flap"></div>
+            <div class="envelope-seal">❤️</div>
+            <div class="envelope-letter">
+                <div>
+                    💌<br>
+                    <strong>List miłosny</strong><br>
+                    <small style="font-size: 0.9rem; color: #e63946;">dla Martusi</small>
+                </div>
+            </div>
+        </div>
+    </div>
+    
     <div class="letter-container">
         <div class="letter-paper">
-            <!-- Pieczątka miłości -->
             <div class="love-stamp"></div>
             
             <div class="letter-header">
@@ -262,7 +472,6 @@
             </div>
             
             <div class="letter-content">
-                <!-- ===== TREŚĆ TWOJEGO LISTU ===== -->
                 <p>Moja Najdroższa Martusiu,</p>
                 
                 <p>Piszę do Ciebie te słowa, bo czasem zwykłe "kocham Cię" wydaje się za małe, by pomieścić wszystko, co czuję. Gdy zamykam oczy, widzę Twój uśmiech – ten jedyny, który rozjaśnia nawet najbardziej szary dzień i sprawia, że świat staje się lżejszy.</p>
@@ -304,26 +513,20 @@
             const message = document.getElementById('loveMessage');
             message.style.display = 'block';
             
-            // Dodaj efekt wibracji przycisku
             const button = document.querySelector('.love-reveal-btn');
             button.style.animation = 'shake 0.5s ease';
             setTimeout(() => button.style.animation = '', 500);
             
-            // Dodaj latające serduszka
             for (let i = 0; i < 25; i++) {
                 createFloatingHeart();
             }
             
-            // Odtwórz dźwięk bicia serca
             try {
                 const audio = new Audio('../assets/sounds/heartbeat.mp3');
                 audio.volume = 0.3;
                 audio.play().catch(() => {});
-            } catch (e) {
-                // Ignoruj błędy z dźwiękiem
-            }
+            } catch (e) {}
             
-            // Oznacz jako przeczytany w głównej aplikacji
             try {
                 if (window.opener) {
                     window.opener.postMessage({ 
@@ -331,12 +534,8 @@
                         date: '10-02-2026' 
                     }, '*');
                 }
-                
-                // Również zapisz w localStorage tego listu
                 localStorage.setItem('letter_10_02_2026_read', 'true');
-            } catch (e) {
-                console.log("Komunikacja z oknem głównym niedostępna");
-            }
+            } catch (e) {}
         }
         
         function createFloatingHeart() {
@@ -354,16 +553,12 @@
             heart.style.pointerEvents = 'none';
             heart.style.animation = `floatHeart ${Math.random() * 4 + 3}s linear forwards`;
             
-            // Losowy kolor serduszka
             const colors = ['#e63946', '#ff6b6b', '#ffafbd', '#e84393', '#fd79a8'];
             heart.style.color = colors[Math.floor(Math.random() * colors.length)];
-            
-            // Losowy obrót
             heart.style.transform = `rotate(${Math.random() * 360}deg)`;
             
             document.body.appendChild(heart);
             
-            // Usuń serduszko po animacji
             setTimeout(() => {
                 if (heart.parentNode) {
                     heart.parentNode.removeChild(heart);
@@ -382,6 +577,21 @@
         `;
         document.head.appendChild(shakeStyle);
         
+        // Ukryj animację koperty po 4.5 sekundach
+        window.addEventListener('load', () => {
+            const wasRead = localStorage.getItem('letter_10_02_2026_read');
+            if (wasRead === 'true') {
+                console.log('Ten list został już wcześniej przeczytany');
+            }
+            
+            setTimeout(() => {
+                const animation = document.getElementById('envelopeAnimation');
+                if (animation) {
+                    animation.style.display = 'none';
+                }
+            }, 4500);
+        });
+        
         // Automatycznie oznacz jako przeczytany po 45 sekundach
         setTimeout(() => {
             try {
@@ -391,19 +601,8 @@
                         date: '10-02-2026' 
                     }, '*');
                 }
-            } catch (e) {
-                // Ignoruj błędy
-            }
+            } catch (e) {}
         }, 45000);
-        
-        // Sprawdź czy list był już czytany
-        window.addEventListener('load', () => {
-            const wasRead = localStorage.getItem('letter_10_02_2026_read');
-            if (wasRead === 'true') {
-                // Możesz dodać jakiś wizualny indicator
-                console.log('Ten list został już wcześniej przeczytany');
-            }
-        });
     </script>
 </body>
 </html>
